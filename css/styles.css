@@ -1,5 +1,13 @@
 .navbar-brand img {
-    width: 80px;
-  }
-  
-  
+  width: 80px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-content {
+  max-width: 1120px;
+}

@@ -17,8 +17,8 @@ include_once("url.php");
   <link rel="stylesheet" href="<?php $BASE_URL?>css/styles.css">
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+<header class="bg-secondary">
+    <div class="navbar navbar-expand-lg navbar-dark bg-secondary header-content">
       <a class="navbar-brand" href="<?= $BASE_URL ?>index.php">
         <img id="logo" src="<?php $BASE_URL ?>img/logo.png" alt="Gaming">
       </a>
@@ -36,5 +36,5 @@ include_once("url.php");
           <a class="nav-link active" href="<?php $BASE_URL ?>login.php">Login/Cadastrar</a>
         </div>
       </div>
-    </nav>
+    </div>
   </header>
