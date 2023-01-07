@@ -1,13 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .navbar-brand img {
   width: 80px;
 }
 
+body {
+  background-color: #1a1a1a;
+}
+
 header {
+  width: 100%;
+  background-color: #6c757d;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+.flex {
   display: flex;
+  gap: 10px;
+}
+.header {
+  gap: 10px;
+  margin: 0 auto;
+
+  max-width: 1120px;
+  display: flex;
+  justify-content: center;
   align-items: center;
+}
+
+.wrapper-content {
+}
+
+.card-game {
+  background-color: aliceblue;
+  width: 250px;
+  height: 470px;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #6c757d !important;
+}
+.content {
+  max-width: 1120px;
+
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  gap: 10px;
   justify-content: center;
 }
 
-.header-content {
-  max-width: 1120px;
+.img {
+  width: 245px;
+  object-fit: contain;
+}
+
+.p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 9; /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.card-content {
+  padding: 10px 15px;
 }
