@@ -10,15 +10,16 @@ class UserDAO implements UserDAOinterface {
     public function __construct(PDO $conn) {
         $this->conn = $conn;
     }
-    
+
     public function create(User $user)
     {
         $stmt = $this->conn->prepare("INSERT INTO users (name, lastname, email, password) VALUES (:name, :lastname, :email, :password)");
     
-          $stmt->bindParam(":name", $user->getname());
-          $stmt->bindParam(":lastname", $user->getlastname());
-          $stmt->bindParam(":email", $user->getemail());
-          $stmt->bindParam(":password", $user->getpassword());
+
+          $stmt->bindValue(":name", $user->getname());
+          $stmt->bindValue(":lastname", $user->getlastname());
+          $stmt->bindValue(":email", $user->getemail());
+          $stmt->bindValue(":password", $user->getpassword());
     
           $stmt->execute();
     }
