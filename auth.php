@@ -26,16 +26,23 @@ if($type === "register") //SE O USUARIO TENTOU FAZER REGISTRO
     // verificar se tudo ta preenchido
     if($name && $lastname && $email && $password) 
     {
-        //TODO: VERIFICAR SE EMAIL JA EXISTE NA DB
+        //verificar se ja existe email cadastrado
+        if ($userDao->HasEmailRegistered($email) == false){
 
-        $user = new User();
-        $finalPassword = password_hash($password, PASSWORD_DEFAULT);
-        $user->setname($name);
-        $user->setlastname($lastname);
-        $user->setemail($email);
-        $user->setpassword($finalPassword);
-        $userDao->create($user);
-
+         $user = new User();
+         $finalPassword = password_hash($password, PASSWORD_DEFAULT);
+         $user->setname($name);
+         $user->setlastname($lastname);
+         $user->setemail($email);
+         $user->setpassword($finalPassword);
+         $userDao->create($user);
+        }
+        else{
+            //TODO: Exibir mensagem: Esse email já está em uso
+        }
+    }
+    else{
+        //TODO: Exibir mensagem: Preencha todos os campos
     }
 }
 elseif($type === "login") // SE O USUARIO TENTOU FAZER LOGIN
