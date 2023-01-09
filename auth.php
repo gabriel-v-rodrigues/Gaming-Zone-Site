@@ -16,18 +16,11 @@ if($type === "register") //SE O USUARIO TENTOU FAZER REGISTRO
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
     $password = filter_input(INPUT_POST, "password");
 
-    //Debugando Variaveis
-    echo $name . "\n";
-    echo $lastname . "\n";
-    echo $email . "\n";
-    echo $password . "\n";
-    echo $type . "\n";
-
     // verificar se tudo ta preenchido
     if($name && $lastname && $email && $password) 
     {
         //verificar se ja existe email cadastrado
-        if ($userDao->HasEmailRegistered($email) == false){
+        if ($userDao->GetAccountByEmail($email) === false){
 
          $user = new User();
          $finalPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -39,10 +32,12 @@ if($type === "register") //SE O USUARIO TENTOU FAZER REGISTRO
         }
         else{
             //TODO: Exibir mensagem: Esse email já está em uso
+            echo "Esse email já está em uso!";
         }
     }
     else{
         //TODO: Exibir mensagem: Preencha todos os campos
+        echo "preencha todos os campos!";
     }
 }
 elseif($type === "login") // SE O USUARIO TENTOU FAZER LOGIN
@@ -51,11 +46,9 @@ elseif($type === "login") // SE O USUARIO TENTOU FAZER LOGIN
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $password = filter_input(INPUT_POST, 'password');
 
-    // Debugando Variaveis
-    echo $email . "\n";
-    echo $password . "\n";
-    echo $type . "\n";
-
-    //TODO: VERIFICAR AUTENTICAÇÃO NA DB E FAZER LOGIN
+    //Verificando se a conta existe & checando se a senha está correta
+    if($userDao->AuthUserLogin($email, $password))
+    {echo "Login feito com sucesso!";}
+    else{echo "Login ou Senha incorreta!";}
 }
 ?>

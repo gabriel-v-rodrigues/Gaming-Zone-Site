@@ -15,6 +15,10 @@
             return $this->id;
         }
 
+        public function setid($id) {
+            $this->id = $id;
+        }
+
         public function getname() {
             return $this->name;
         }

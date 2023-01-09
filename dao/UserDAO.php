@@ -7,10 +7,12 @@ class UserDAO implements UserDAOinterface {
     private $conn;
     private $url;
 
-    public function __construct(PDO $conn) {
+    public function __construct(PDO $conn) 
+    {
         $this->conn = $conn;
     }
 
+    //Função para criar o usuario
     public function create(User $user)
     {
         $stmt = $this->conn->prepare("INSERT INTO users (name, lastname, email, password) VALUES (:name, :lastname, :email, :password)");
@@ -24,9 +26,29 @@ class UserDAO implements UserDAOinterface {
           $stmt->execute();
     }
 
-    public function HasEmailRegistered($email) {
+    //Função pegar o usuario da DB e reconstruir ele localmente
+    public function buildUser($data) 
+    {
 
-        if($email != "") {
+      $user = new User();
+
+      $user->setid($data["id"]);
+      $user->setname($data["name"]);
+      $user->setlastname($data["lastname"]);
+      $user->setemail($data["email"]);
+      $user->setpassword($data["password"]);
+
+      return $user;
+
+    }
+
+
+    //Função para buscar o email na DB
+    public function GetAccountByEmail($email) 
+    {
+
+        if($email != "") 
+        {
   
           $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
           
@@ -35,16 +57,26 @@ class UserDAO implements UserDAOinterface {
           $stmt->execute();
   
           if($stmt->rowCount() > 0) {
-            return true;
-          } else {
-            return false;
-          }
+            $data = $stmt->fetch();
+            $user = $this->buildUser($data);
+            return $user;
+          } else {return false;}
   
         }
   
         return false;
   
-      }
+    }
+    
+    //Função para fazer autenticar o login
+    public function AuthUserLogin($email, $password) 
+    {
 
-
+        $user = new User();
+        $user = $this->GetAccountByEmail($email);
+        if($user) {
+          if (password_verify($password, $user->getpassword())){return true;}
+          else{return false;}
+        }
+    }
 }
