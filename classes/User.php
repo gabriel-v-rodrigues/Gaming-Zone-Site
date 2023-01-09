@@ -77,5 +77,9 @@
     }
 
     interface UserDAOinterface {
+        public function __construct(PDO $conn);
         public function create(User $user);
+        public function AuthUserLogin($email, $password);
+        public function GetAccountByEmail($email);
+        public function buildUser($data);
     }

@@ -26,7 +26,7 @@ include_once("url.php");
       <div>
         <div class="flex">
           <a class="link" id="home-link" href="<?= $BASE_URL ?>index.php">Home</a>
-          <a class="link" href="<?php $BASE_URL ?>games.php">Ver todos os Jogos</a>
+          <a class="link" href="<?php $BASE_URL ?>allgames.php">Ver todos os Jogos</a>
           <a class="link" href="<?php $BASE_URL ?>create.php">Adicionar Jogo</a>
           <form action="<?= $BASE_URL ?>search.php" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
             <input type="text" name="q" id="search" class="form-control mr-sm-2" type="search" placeholder="Procurar jogo especifico" aria-label="Search">
