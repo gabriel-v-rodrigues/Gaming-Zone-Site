@@ -25,8 +25,8 @@
               <input type="category" class="form-control" id="category" name="category" placeholder="Digite aqui a categoria principal do jogo">
             </div>
             <div class="form-group">
-              <label for="Appid">Digite o AppID do jogo (steamdb.info)</label>
-              <input type="number" class="form-control" id="appId" name="appId" placeholder="Digite aqui o AppID">
+              <label for="appid">Digite o AppID do jogo (steamdb.info)</label>
+              <input type="appid" class="form-control" id="appid" name="appid" placeholder="Digite aqui o AppID">
             </div>
             <input type="submit" class="btn card-btn" value="create-game">
           </form>
