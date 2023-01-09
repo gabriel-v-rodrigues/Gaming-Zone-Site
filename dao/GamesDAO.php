@@ -10,6 +10,23 @@ class GamesDAO implements GamesDAOInterface {
         $this->conn = $conn;
     }
 
+        //Função para criar o jogo
+    public function create(Games $game)
+    {
+            $stmt = $this->conn->prepare("INSERT INTO games (title, description, gameplay, category, appid, users_id) VALUES (:title, :description, :gameplay, :category, :appid, :users_id)");
+        
+    
+              $stmt->bindValue(":title", $game->title);
+              $stmt->bindValue(":description", $game->description);
+              $stmt->bindValue(":gameplay", $game->gameplay);
+              $stmt->bindValue(":category", $game->category);
+              $stmt->bindValue(":appid", $game->appid);
+              //Configurar para o id do usuario
+              $stmt->bindValue(":users_id", 1);
+        
+              $stmt->execute();
+    }
+
 
     public function buildGame($data) {
 
@@ -23,7 +40,6 @@ class GamesDAO implements GamesDAOInterface {
         $Game->users_id = $data["users_id"];
   
         return $Game;
-  
     }
 
     public function getTopGames(){
@@ -40,11 +56,7 @@ class GamesDAO implements GamesDAOInterface {
             }
             
         }
-
-          return $games;
+     return $games;
     }
-
 }
-
-
 ?>
