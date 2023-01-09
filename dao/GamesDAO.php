@@ -58,5 +58,29 @@ class GamesDAO implements GamesDAOInterface {
         }
      return $games;
     }
+
+    public function CheckIfGameAlreadyExists($appid) 
+    {
+
+        if($appid != "") 
+        {
+  
+          $stmt = $this->conn->prepare("SELECT * FROM games WHERE appid = :appid");
+          
+          $stmt->bindValue(":appid", $appid);
+  
+          $stmt->execute();
+  
+          if($stmt->rowCount() > 0) {
+            return true;
+          } else {return false;}
+  
+        }
+  
+        return false;
+  
+    }
+
+
 }
 ?>

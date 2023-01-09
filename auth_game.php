@@ -16,7 +16,7 @@ if($type === "creating-game")
     $appid = filter_input(INPUT_POST, "appid");
 
     //TODO: VERIFICAR SE O JOGO JA EXISTE NA DB
-
+    if ($gameDAO->CheckIfGameAlreadyExists($appid) === false){
     $game = new Games();
     $game->title = $title;
     $game->description = $description;
@@ -24,6 +24,8 @@ if($type === "creating-game")
     $game->category = $category;
     $game->appid = $appid;
     $gameDAO->create($game);
+    }
+    else {echo "Esse jogo já existe!";}
 
 }
 
