@@ -11,6 +11,10 @@
         private $token;
         private $bio;
 
+        public function generateToken(){
+            return bin2hex(random_bytes(50));
+        }
+
         public function getid() {
             return $this->id;
         }

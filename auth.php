@@ -24,10 +24,12 @@ if($type === "register") //SE O USUARIO TENTOU FAZER REGISTRO
 
          $user = new User();
          $finalPassword = password_hash($password, PASSWORD_DEFAULT);
+         $userToken = $user->generateToken();
          $user->setname($name);
          $user->setlastname($lastname);
          $user->setemail($email);
          $user->setpassword($finalPassword);
+         $user->settoken($userToken);
          $userDao->create($user);
         }
         else{

@@ -67,6 +67,7 @@ class UserDAO implements UserDAOinterface {
         return false;
   
     }
+
     
     //Função para fazer autenticar o login
     public function AuthUserLogin($email, $password) 
@@ -75,7 +76,12 @@ class UserDAO implements UserDAOinterface {
         $user = new User();
         $user = $this->GetAccountByEmail($email);
         if($user) {
-          if (password_verify($password, $user->getpassword())){return true;}
+          if (password_verify($password, $user->getpassword())){
+            $token = $user->generateToken();
+            $_SESSION["token"] = $token;
+            $user->settoken($token);
+            return true;
+          }
           else{return false;}
         }
     }
